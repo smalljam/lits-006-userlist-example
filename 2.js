@@ -17,19 +17,17 @@ var usersList = document.getElementById('usersListNode');
 
 function drawUsers(usersList) {
   usersList.forEach(function(arrayItem, index) {
-    drawOneUser(arrayItem.name);
+    drawOneUser(arrayItem);
   });
 }
 
-function drawOneUser(content) {
+function drawOneUser(userObject) {
   var item = document.createElement('li');
-  item.innerHTML = content;
+  item.innerHTML = userObject.name;
   item.className = 'user';
-
-  if (content == 'John') {
-    // item.style.borderWidth = '20px';
-    item.className += ' userWithBorder';
-  }
+  item.onclick = function() {
+    document.getElementById('userInfoNode').innerHTML = userObject.info;
+  };
 
   usersList.appendChild(item);
 }
