@@ -2,16 +2,19 @@ var users = [
   {
     name: 'John',
     info: 'likes bowling',
+    second: 'Second',
     avatar: 'http://www.iconarchive.com/download/i51046/hopstarter/halloween-avatars/Jason.ico',
   },
   {
     name: 'Pavel',
     info: 'plays footbal',
+    second: 'Second',
     avatar: 'http://www.iconarchive.com/download/i51026/hopstarter/halloween-avatars/Alien.ico',
   },
   {
     name: 'Igor',
     info: 'drinks a lot',
+    second: 'Second',
     avatar: 'http://files.softicons.com/download/internet-cons/halloween-avatars-icons-by-deleket/ico/Zombie%202.ico',
   },
 ];
@@ -25,6 +28,7 @@ function drawUsers(usersList) {
 var selectedUser;
 
 function drawOneUser(userObject, index) {
+
   var item = document.createElement('li');
   item.innerHTML = index + ':' + userObject.name;
   item.className = 'user';
@@ -46,11 +50,12 @@ var template = document.getElementById('userInfoNode').innerHTML;
 document.getElementById('userInfoNode').innerHTML = '';
 
 function setUserInfo(userObject) {
-  var newContent = template.replace('{{name}}', userObject.name);
+  var newContent = template;
 
-  newContent = newContent.replace('{{avatar}}', userObject.avatar);
-
-  newContent = newContent.replace('{{info}}', userObject.info);
+  var fields = ['name', 'avatar', 'info', 'second'];
+  fields.forEach(function(fieldName) {
+    newContent = newContent.replace('{{' + fieldName + '}}', userObject[fieldName]);
+  });
 
   document.getElementById('userInfoNode').innerHTML = newContent;
 }
