@@ -15,15 +15,10 @@ var users = [
 
 var usersList = document.getElementById('usersListNode');
 
-function drawUsers(users) {
-
-  users.forEach(function(value, index) {
-    console.log(value, index);
+function drawUsers(usersList) {
+  usersList.forEach(function(arrayItem, index) {
+    drawOneUser(arrayItem.name);
   });
-
-  drawOneUser('123123123');
-  drawOneUser('47456456456456');
-  drawOneUser('another');
 }
 
 function drawOneUser(content) {
