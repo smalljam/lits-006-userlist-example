@@ -23,6 +23,7 @@ var users = [
 ];
 
 var usersList = document.getElementById('usersListNode');
+var userInfoNode = document.getElementById('userInfoNode');
 
 function drawUsers(usersList) {
   usersList.forEach(drawOneUser);
@@ -48,9 +49,9 @@ function drawOneUser(userObject, index) {
   usersList.appendChild(item);
 }
 
-var template = document.getElementById('userInfoNode').innerHTML;
+var template = userInfoNode.innerHTML;
 
-document.getElementById('userInfoNode').innerHTML = '';
+setUserInfoNodeHTML('');
 
 function setUserInfo(userObject) {
   var newContent = template;
@@ -60,5 +61,9 @@ function setUserInfo(userObject) {
     newContent = newContent.replace('{{' + fieldName + '}}', userObject[fieldName]);
   });
 
-  document.getElementById('userInfoNode').innerHTML = newContent;
+  setUserInfoNodeHTML(newContent);
+}
+
+function setUserInfoNodeHTML(content) {
+  userInfoNode.innerHTML = content;
 }
