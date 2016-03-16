@@ -24,5 +24,6 @@ function drawUsers(usersList) {
 function drawOneUser(content) {
   var item = document.createElement('li');
   item.innerHTML = content;
+  item.className = 'user';
   usersList.appendChild(item);
 }

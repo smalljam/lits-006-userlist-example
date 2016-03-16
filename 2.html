@@ -3,16 +3,34 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+      ul {
+        list-style: none;
+        padding: 0px;
+      }
+      li.user {
+        border: 1px solid #000;
+        margin: 10px;
+        padding: 20px;
+      }
+      li.userActive {
+        border: 1px solid #000;
+        margin: 10px;
+        padding: 20px;
+        font-weight: bold;
+        background: yellow;
+      }
+    </style>
   </head>
   <body>
     <table>
       <tr>
-        <td>
+        <td valign="top">
           <h1>User list</h1>
           <ul id="usersListNode">
           </ul>
         </td>
-        <td>
+        <td valign="top">
           <h1>User info</h1>
           <div id="userInfoNode"></div>
         </td>
