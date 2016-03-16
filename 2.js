@@ -24,11 +24,12 @@ function drawUsers(usersList) {
 function drawOneUser(content) {
   var item = document.createElement('li');
   item.innerHTML = content;
+  item.className = 'user';
 
-  // item.className = 'user';
-  // item.style.cssText = 'border: 1px solid #000;margin: 10px;padding: 20px;';
-  item.style.border = '1px solid #000';
-  item.style.margin = '10px';
-  item.style.padding = '20px';
+  if (content == 'John') {
+    // item.style.borderWidth = '20px';
+    item.className += ' userWithBorder';
+  }
+
   usersList.appendChild(item);
 }
