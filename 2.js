@@ -4,18 +4,21 @@ var users = [
     info: 'likes bowling',
     second: 'Second',
     avatar: 'http://www.iconarchive.com/download/i51046/hopstarter/halloween-avatars/Jason.ico',
+    newfield: 'asdasdasdasd',
   },
   {
     name: 'Pavel',
     info: 'plays footbal',
     second: 'Second',
     avatar: 'http://www.iconarchive.com/download/i51026/hopstarter/halloween-avatars/Alien.ico',
+    newfield: 'asdasdasdasd',
   },
   {
     name: 'Igor',
     info: 'drinks a lot',
     second: 'Second',
     avatar: 'http://files.softicons.com/download/internet-cons/halloween-avatars-icons-by-deleket/ico/Zombie%202.ico',
+    newfield: 'asdasdasdasd',
   },
 ];
 
@@ -52,7 +55,7 @@ document.getElementById('userInfoNode').innerHTML = '';
 function setUserInfo(userObject) {
   var newContent = template;
 
-  var fields = ['name', 'avatar', 'info', 'second'];
+  var fields = Object.keys(userObject);
   fields.forEach(function(fieldName) {
     newContent = newContent.replace('{{' + fieldName + '}}', userObject[fieldName]);
   });
