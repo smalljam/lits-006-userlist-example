@@ -15,18 +15,19 @@ var users = [
 
 var usersList = document.getElementById('usersListNode');
 
-function drawUsers() {
-  // usersList.innerHTML = '<li>123123123</li><li>47456456456456</li><li>another</li>';
+function drawUsers(users) {
 
+  users.forEach(function(value, index) {
+    console.log(value, index);
+  });
+
+  drawOneUser('123123123');
+  drawOneUser('47456456456456');
+  drawOneUser('another');
+}
+
+function drawOneUser(content) {
   var item = document.createElement('li');
-  item.innerHTML = '123123123';
+  item.innerHTML = content;
   usersList.appendChild(item);
-
-  var item2 = document.createElement('li');
-  item2.innerHTML = '47456456456456';
-  usersList.appendChild(item2);
-
-  var another = document.createElement('li');
-  another.innerHTML = 'another';
-  usersList.appendChild(another);
 }
