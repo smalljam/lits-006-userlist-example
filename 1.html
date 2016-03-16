@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var tree = {
+        left: {
+          left: 1,
+          right: {
+            left: 5,
+            right: 6
+          }
+        },
+        right: {
+          left: 7,
+          right: {
+            left: {
+              left: 8,
+              right: 9
+            },
+            right: 10
+          }
+        }
+      }
+
+
+      function calculateTree(tree){
+        return evaluatePart(tree.left) + evaluatePart(tree.right);
+
+        function evaluatePart(part){
+          if( typeof part == 'object') {
+            return calculateTree(part);
+          } else {
+            return part;
+          }
+        }
+      }
+
+      console.log(calculateTree(tree));
+    </script>
+  </body>
+</html>
