@@ -33,20 +33,28 @@ function drawOneUser(userObject, index) {
     item.innerHTML = index + ':' + userObject.name;
     item.className = 'user';
     item.onclick = function() {
+        //by className
+        //if (selectedUser) {
+        //     selectedUser.className = 'user';
+        // }
+        // setUserInfo(userObject);
+        // this.className = 'userActive';
+        // selectedUser = this;
+
+        //by classList
         if (selectedUser) {
-            selectedUser.className = 'user';
+            selectedUser.classList.toggle('userActive',false);
         }
-
         setUserInfo(userObject);
-        this.className = 'userActive';
+        this.classList.toggle('userActive');
         selectedUser = this;
-    };
 
+    }
     usersList.appendChild(item);
+
 }
 
 var template = userInfoNode.innerHTML;
-
 setUserInfoNodeHTML('');
 
 function setUserInfo(userObject) {
