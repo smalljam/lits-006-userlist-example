@@ -50,14 +50,17 @@
                         <li>{{.}}
                         </li>{{/skills}}
                     </ul>
-                    {{#address}}<h3>Address:</h3>
+                    {{#address}}
+                    <h3>Address:</h3>
                     <p>{{>address}}</p>{{/address}}
                 </div>
             </td>
         </tr>
     </table>
-    <script type="text/javascript" src="2.js"></script>
     <script type="text/javascript" src="mustachejs/mustache.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="2jquery.js"></script>
+    <!-- <script type="text/javascript" src="2.js"></script> -->
     <script>
     drawUsers(users);
     </script>
