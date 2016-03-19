@@ -37,13 +37,14 @@ function drawOneUser(userObject, index) {
   item.innerHTML = index + ':' + userObject.name;
   item.className = 'user';
   item.onclick = function() {
-    if (selectedUser) {
-      selectedUser.className = 'user';
-    }
-
+     if (selectedUser) {
+         selectedUser.className = 'user';
+         this.classList.toggle('additionalUser');
+      }
+  
     setUserInfo(userObject);
-    this.className = 'userActive';
-    selectedUser = this;
+   
+      selectedUser = this;
   };
 
   usersList.appendChild(item);
