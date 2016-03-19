@@ -5,24 +5,32 @@ var users = [
     second: 'Second',
     avatar: 'http://www.iconarchive.com/download/i51046/hopstarter/halloween-avatars/Jason.ico',
     newfield: 'asdasdasdasd',
-  },
+    webpages: ['www.google.com', 'www.lits.com.ua'],
+     skills: ['JavaScript', 'CSS', 'HTML'],
+ },
+  
   {
     name: 'Pavel',
     info: 'plays footbal',
     second: 'Second',
     avatar: 'http://www.iconarchive.com/download/i51026/hopstarter/halloween-avatars/Alien.ico',
     newfield: 'asdasdasdasd',
-  },
+     webpages: ['www.google.com', 'www.lits.com.ua'],
+      skills: ['SQL', 'Mustache.js', 'Angular'],
+    },
   {
     name: 'Igor',
     info: 'drinks a lot',
     second: 'Second',
     avatar: 'http://files.softicons.com/download/internet-cons/halloween-avatars-icons-by-deleket/ico/Zombie%202.ico',
     newfield: 'asdasdasdasd',
-  },
-];
+     webpages: ['www.wineroom.com', 'www.nemiroff.com'],
+      skills: ['Drink vodka', 'drink beer', 'have no hangover'],
+  }
+  ];
 
-var usersList = document.getElementById('usersListNode');
+
+$ usersList = document.getElementById('usersListNode');
 var userInfoNode = document.getElementById('userInfoNode');
 
 function drawUsers(usersList) {
@@ -43,7 +51,7 @@ function drawOneUser(userObject, index) {
       }
   
     setUserInfo(userObject);
-   
+
       selectedUser = this;
   };
 
@@ -55,16 +63,16 @@ var template = userInfoNode.innerHTML;
 setUserInfoNodeHTML('');
 
 function setUserInfo(userObject) {
-  var newContent = template;
+var tpl = "{{#.}}<h1>{{name}}</h1> <br> <img src={{avatar}}> <p>{{info}}</p> <br> <p> {{second}}</p>  <h3>{{newfield}}</h3>  webpages : <ul>{{#webpages}} <li> {{.}} </li>{{/webpages}}</ul> skills:<ul>{{#skills}}<li>{{.}}</li>{{/skills}}</ul>{{/.}}";
 
-  var fields = Object.keys(userObject);
-  fields.forEach(function(fieldName) {
-    newContent = newContent.replace('{{' + fieldName + '}}', userObject[fieldName]);
-  });
+var html = Mustache.to_html(tpl, userObject);
+ userInfoNode.innerHTML = html;
 
-  setUserInfoNodeHTML(newContent);
+  setUserInfoNodeHTML(html);
 }
 
-function setUserInfoNodeHTML(content) {
-  userInfoNode.innerHTML = content;
+
+
+function setUserInfoNodeHTML(html) {
+  userInfoNode.innerHTML = html;
 }
