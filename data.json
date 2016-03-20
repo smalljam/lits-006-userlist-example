@@ -4,20 +4,23 @@
     "info" : "likes bowling",
     "second" : "Wallcot",
     "avatar" : "http://www.iconarchive.com/download/i51046/hopstarter/halloween-avatars/Jason.ico",
-    "interests" : ["women", "music", "hang out with friends", "cars"]
+    "interests" : ["women", "music", "hang out with friends", "cars"],
+    "languages": ["russian", "poliah", "ukrainian"]
   },
   {
     "name" : "Pavel",
     "info" : "plays footbal",
     "second" : "Jackson",
     "avatar" : "http://www.iconarchive.com/download/i51026/hopstarter/halloween-avatars/Alien.ico",
-    "interests" : ["sport", "camping", "traveling", "bikes"]
+    "interests" : ["sport", "camping", "traveling", "bikes"],
+    "languages": ["portugal", "spanish", "german", "chech"]
   },
   {
     "name" : "Igor",
     "info" : "drinks a lot",
     "second" : "Petrov",
     "avatar" : "http://files.softicons.com/download/internet-cons/halloween-avatars-icons-by-deleket/ico/Zombie%202.ico",
-    "interests" : ["art", "women", "music", "science", "rock festivals"]
+    "interests" : ["art", "women", "music", "science", "rock festivals"],
+    "languages": ["english", "spanish", "france", "hindi"]
   }
 ]}
