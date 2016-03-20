@@ -22,8 +22,8 @@ var users = [
   },
 ];
 
-var usersList = document.getElementById('usersListNode');
-var userInfoNode = document.getElementById('userInfoNode');
+var usersList = $('#usersListNode');
+var userInfoNode = $('#userInfoNode');
 
 function drawUsers(usersList) {
   usersList.forEach(drawOneUser);
@@ -31,39 +31,35 @@ function drawUsers(usersList) {
 
 var selectedUser;
 
-function drawOneUser(userObject, index) {
-
-  var item = document.createElement('li');
-  item.innerHTML = index + ':' + userObject.name;
-  item.className = 'user';
-  item.onclick = function() {
-    if (selectedUser) {
-      selectedUser.className = 'user';
-    }
-
-    setUserInfo(userObject);
-    this.className = 'userActive';
-    selectedUser = this;
-  };
-
-  usersList.appendChild(item);
+function drawOneUser(user, index) {
+  var item = $(document.createElement('li'));
+  item.text(index + ':' + user.name);
+  item.addClass('user');
+  item.click(function() {
+    if (selectedUser)
+      selectedUser.removeClass('userActive');
+    setUserInfo(user);
+    var self = $(this);
+    self.addClass('userActive');
+    selectedUser = self;
+  });
+  usersList.append(item);
 }
 
-var template = userInfoNode.innerHTML;
+var template = userInfoNode.html();
 
 setUserInfoNodeHTML('');
 
-function setUserInfo(userObject) {
+function setUserInfo(user) {
   var newContent = template;
-
-  var fields = Object.keys(userObject);
+  var fields = Object.keys(user);
   fields.forEach(function(fieldName) {
-    newContent = newContent.replace('{{' + fieldName + '}}', userObject[fieldName]);
+    newContent = newContent.replace('{{' + fieldName + '}}', user[fieldName]);
   });
 
   setUserInfoNodeHTML(newContent);
 }
 
 function setUserInfoNodeHTML(content) {
-  userInfoNode.innerHTML = content;
+  userInfoNode.html(content);
 }
