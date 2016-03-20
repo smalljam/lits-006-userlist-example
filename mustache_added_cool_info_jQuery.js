@@ -34,31 +34,30 @@ var usersList =$('#usersListNode');
 var userInfoNode = $('#userInfoNode');
 
 function drawUsers(usersList) {
-  usersList.forEach(drawOneUser);
+  usersList.each(drawOneUser);
 }
 
 var selectedUser;
 
 function drawOneUser(userObject, index) {
 
-  var item = document.createElement('li');
-  item.innerHTML = index + ':' + userObject.name;
-  item.className = 'user';
-  item.onclick = function() {
-     if (selectedUser) {
-         selectedUser.className = 'user';
-         this.classList.add('additionalUser');
+  var item = $("<li></li>");
+  item.html = index + ':' + userObject.name;
+  item.addClass = 'user';
+  item.click(function() {
+     $(this) 
+         .toggleClass('additionalUser');
       }
   
     setUserInfo(userObject);
 
-      selectedUser = this;
+ 
   };
 
-  usersList.appendChild(item);
+  usersList.append($item);
 }
 
-var template = userInfoNode.innerHTML;
+
 
 setUserInfoNodeHTML('');
 
