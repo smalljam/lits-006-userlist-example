@@ -2,22 +2,22 @@
   {
     "name" : "John",
     "info" : "likes bowling",
-    "second" : "Second",
+    "second" : "Wallcot",
     "avatar" : "http://www.iconarchive.com/download/i51046/hopstarter/halloween-avatars/Jason.ico",
-    "newfield" : "asdasdasdasd"
+    "interests" : ["women", "music", "hang out with friends", "cars"]
   },
   {
     "name" : "Pavel",
     "info" : "plays footbal",
-    "second" : "Second",
+    "second" : "Jackson",
     "avatar" : "http://www.iconarchive.com/download/i51026/hopstarter/halloween-avatars/Alien.ico",
-    "newfield" : "asdasdasdasd"
+    "interests" : ["sport", "camping", "traveling", "bikes"]
   },
   {
     "name" : "Igor",
     "info" : "drinks a lot",
-    "second" : "Second",
+    "second" : "Petrov",
     "avatar" : "http://files.softicons.com/download/internet-cons/halloween-avatars-icons-by-deleket/ico/Zombie%202.ico",
-    "newfield" : "asdasdasdasd"
+    "interests" : ["art", "women", "music", "science", "rock festivals"]
   }
 ]}
