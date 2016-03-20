@@ -21,6 +21,19 @@
       li.userWithBorder {
         border-width: 20px;
       }
+      .image-wrapper {
+        width: 256px;
+        height: 256px;
+        position: relative;
+      }
+      .image-wrapper::after {
+        content: "avatar";
+        color: gray;
+        position: absolute;
+        left: 42%;
+        top: 45%;
+        z-index: -1;
+      }
     </style>
   </head>
   <body>
@@ -33,7 +46,9 @@
         <td valign="top">
           <div id="userInfoNode">
             <h1>{{name}} {{second}}</h1>
-            <img src="{{avatar}}">
+            <div class="image-wrapper">
+              <img src="{{avatar}}">
+            </div>
             <h3>{{info}}</h3>
             <p>{{newfield}}</p>
           </div>
