@@ -45,21 +45,23 @@
         </td>
         <td valign="top">
           <div id="userInfoNode">
-            <h1>{{name}} {{second}}</h1>
-            <div class="image-wrapper">
-              <img src="{{avatar}}">
-            </div>
-            <h3>{{info}}</h3>
-            <p>{{newfield}}</p>
+            <!-- content -->
           </div>
         </td>
       </tr>
     </table>
 
-    <script src="vendor/jquery-1.12.2.min.js"></script>
-    <script src="2.js"></script>
-    <script>
-      drawUsers(users);
+    <script id="userInfoTemplate" type="text/template">
+      <h1>{{name}} {{second}}</h1>
+      <div class="image-wrapper">
+        <img src="{{avatar}}">
+      </div>
+      <h3>{{info}}</h3>
+      <p>{{newfield}}</p>
     </script>
+
+    <script src="vendor/jquery-1.12.2.min.js"></script>
+    <script src="vendor/mustache.min.js"></script>
+    <script src="2.js"></script>
   </body>
 </html>
