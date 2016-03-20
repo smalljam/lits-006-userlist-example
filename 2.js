@@ -13,6 +13,7 @@ function loadData() {
 var usersList = $('#usersListNode');
 var userInfoNode = $('#userInfoNode');
 var template = $('#userInfoTemplate').html();
+var listTemplate = $('#listTemplate').html();
 var selectedUser;
 
 function drawUsers(users) {
@@ -40,5 +41,15 @@ function clickOnUser(user) {
 function setUserInfo(user) {
   var newTemplate = template;
   var newContent = Mustache.to_html(template, user);
+  newContent += mustachifyList('interests', listTemplate, user.interests);
+  newContent += mustachifyList('languages', listTemplate, user.languages);
   userInfoNode.html(newContent);
+}
+
+function mustachifyList(name, template, items) {
+  var object = {name: name, items: items.map(function(x) {
+      return {item: x};
+    })
+  };
+  return Mustache.to_html(template, object);
 }

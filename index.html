@@ -60,6 +60,17 @@
       <p>{{newfield}}</p>
     </script>
 
+    <script id="listTemplate" type="text/template">
+      <b>{{name}}:</b>
+      <div>
+      {{#items}}
+        <span>
+          #{{item}}
+        </span>
+      {{/items}}
+    </div>
+    </script>
+
     <script src="vendor/jquery-1.12.2.min.js"></script>
     <script src="vendor/mustache.min.js"></script>
     <script src="2.js"></script>
