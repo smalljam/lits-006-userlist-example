@@ -30,7 +30,7 @@ var users = [
   ];
 
 
-$ usersList = document.getElementById('usersListNode');
+var usersList = document.getElementById('usersListNode');
 var userInfoNode = document.getElementById('userInfoNode');
 
 function drawUsers(usersList) {
@@ -76,3 +76,4 @@ var html = Mustache.to_html(tpl, userObject);
 function setUserInfoNodeHTML(html) {
   userInfoNode.innerHTML = html;
 }
+drawUsers(users);

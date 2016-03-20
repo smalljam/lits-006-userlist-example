@@ -39,7 +39,8 @@ function drawOneUser(userObject, index) {
   item.onclick = function() {
      if (selectedUser) {
          selectedUser.className = 'user';
-         this.classList.add('additionalUser');
+         this.className = 'userActive';
+       
       }
   
     setUserInfo(userObject);

@@ -30,34 +30,34 @@ var users = [
   ];
 
 
-var usersList =$('#usersListNode');
-var userInfoNode = $('#userInfoNode');
+var $usersList = $('#usersListNode');
+var $userInfoNode = $('#userInfoNode');
 
 function drawUsers(usersList) {
-  usersList.each(drawOneUser);
+  usersList.forEach(drawOneUser);
 }
 
 var selectedUser;
 
 function drawOneUser(userObject, index) {
 
-  var item = $("<li></li>");
-  item.html = index + ':' + userObject.name;
-  item.addClass = 'user';
-  item.click(function() {
-     $(this) 
-         .toggleClass('additionalUser');
-      }
-  
+    var $item = $('<li></li>');
+  $item.html(index + ':' + userObject.name);
+  $item.addClass('user');
+  $item.click(function() {
+    $(this).toggleClass('additionalUser')
+    $(this).siblings('li').removeClass('additionalUser');
+   
+      
+    
     setUserInfo(userObject);
+  
+  });
 
- 
-  };
-
-  usersList.append($item);
+  $usersList.append($item);
 }
 
-
+var template = $userInfoNode.html();
 
 setUserInfoNodeHTML('');
 
@@ -65,7 +65,7 @@ function setUserInfo(userObject) {
 var tpl = "{{#.}}<h1>{{name}}</h1> <br> <img src={{avatar}}> <p>{{info}}</p> <br> <p> {{second}}</p>  <h3>{{newfield}}</h3>  webpages : <ul>{{#webpages}} <li> {{.}} </li>{{/webpages}}</ul> skills:<ul>{{#skills}}<li>{{.}}</li>{{/skills}}</ul>{{/.}}";
 
 var html = Mustache.to_html(tpl, userObject);
- userInfoNode(html);
+ $userInfoNode.html(html);
 
   setUserInfoNodeHTML(html);
 }
@@ -73,5 +73,8 @@ var html = Mustache.to_html(tpl, userObject);
 
 
 function setUserInfoNodeHTML(html) {
-  userInfoNode.(html);
+  $userInfoNode.html(html);
 }
+
+ drawUsers(users);
+
