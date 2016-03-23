@@ -4,13 +4,17 @@ var button = document.getElementById('button');
 var par1 = document.getElementById('par1');
 
 r1.addEventListener('click', function(e) {
-  this.style.height = '20px';
-  this.style.overflow = 'hidden';
+  console.log('div root1 clicked captured');
+  // e.stopPropagation();
+}, true);
+
+r1.addEventListener('click', function(e) {
+  console.log('div root1 clicked bubble');
 });
 
 par1.addEventListener('click', function(e) {
 
-  console.log(e.target);
+  // console.log(e.target);
 
   if (e.target.tagName == 'BUTTON') {
     console.log(e.target.id, 'clicked');
@@ -19,12 +23,12 @@ par1.addEventListener('click', function(e) {
     console.log('par1 clicked');
   }
 
-  e.stopPropagation();
+  // e.stopPropagation();
 });
 
 document.addEventListener('click', function(e) {
   console.log('document clicked', e.clientX);
-});
+}, true);
 
 var newButton = document.createElement('button');
 newButton.id = 'button3';
