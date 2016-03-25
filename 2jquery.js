@@ -42,8 +42,8 @@ var users = [{
     }
 }, ];
 
-var usersList = document.getElementById('usersListNode');
-var userInfoNode = document.getElementById('userInfoNode');
+var $usersList = $('#usersListNode');
+var $userInfoNode = $('#userInfoNode');
 
 function drawUsers(usersList) {
     usersList.forEach(drawOneUser);
@@ -53,31 +53,21 @@ var selectedUser;
 
 function drawOneUser(userObject, index) {
 
-    var item = document.createElement('li');
-    item.innerHTML = index + ':' + userObject.name;
-    item.className = 'user';
-    item.onclick = function() {
-        //by className
-        //if (selectedUser) {
-        //     selectedUser.className = 'user';
-        // }
-        // setUserInfo(userObject);
-        // this.className = 'userActive';
-        // selectedUser = this;
+    var $item = $('<li></li>');
+    $item.html(index + ':' + userObject.name);
+    $item.addClass('user');
+    $item.on('click', function(){
+        $(this)
+            .toggleClass('userActive')
+            .siblings('li')
+                .removeClass('userActive');
 
-        //by classList
-        if (selectedUser) {
-            selectedUser.classList.toggle('userActive', false);
-        }
         setUserInfo(userObject);
-        this.classList.toggle('userActive');
-        selectedUser = this;
-
-    }
-    usersList.appendChild(item);
+    });
+    $usersList.append($item);
 }
 
-var template = userInfoNode.innerHTML.replace(/{{&gt;/g, "{{>");
+var template = $userInfoNode.html().replace(/{{&gt;/g, "{{>");
 
 setUserInfoNodeHTML('');
 
@@ -85,9 +75,9 @@ var partials = { address: "{{city}}, {{state}} {{zip}}" };
 
 function setUserInfo(userObject) {
     var newContent = Mustache.to_html(template, userObject, partials);
-    userInfoNode.innerHTML = newContent;
+    $userInfoNode.html(newContent);
 }
 
 function setUserInfoNodeHTML(content) {
-    userInfoNode.innerHTML = content;
+    $userInfoNode.html(content);
 }

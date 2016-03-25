@@ -1,52 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title></title>
     <style>
-      ul {
+    ul {
         list-style: none;
         padding: 0px;
-      }
-      li.user {
+    }
+    
+    li.user {
         border: 1px solid #000;
         margin: 10px;
         padding: 20px;
         background: lightgrey;
-      }
-      li.userActive {
+    }
+    
+    li.userActive {
         border: 1px solid #000;
         margin: 10px;
         padding: 20px;
         font-weight: bold;
         background: yellow;
-      }
-      li.userWithBorder {
+    }
+    
+    li.userWithBorder {
         border-width: 20px;
-      }
+    }
     </style>
-  </head>
-  <body>
-    <table>
-      <tr>
-        <td valign="top">
-          <ul id="usersListNode">
-          </ul>
-        </td>
-        <td valign="top">
-          <div id="userInfoNode">
-            <h1>{{name}} {{second}}</h1>
-            <img src="{{avatar}}">
-            <h3>{{info}}</h3>
-            <p>{{newfield}}</p>
-          </div>
-        </td>
-      </tr>
-    </table>
+</head>
 
-    <script src="2.js"></script>
+<body>
+    <table>
+        <tr>
+            <td valign="top">
+                <ul id="usersListNode">
+                </ul>
+            </td>
+            <td valign="top">
+                <div id="userInfoNode">
+                    <h1>{{name}} {{second}}</h1>
+                    <h3>{{#fullTime}} Mobile number: {{phone}} {{/fullTime}}</h3>
+                    <img src="{{avatar}}">
+                    <h3>{{info}}</h3>
+                    <p>{{newfield}}</p>
+                    <h2>Skills</h2>
+                    <ul>{{#skills}}
+                        <li>{{.}}
+                        </li>{{/skills}}
+                    </ul>
+                    {{#address}}
+                    <h3>Address:</h3>
+                    <p>{{>address}}</p>{{/address}}
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="mustachejs/mustache.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="2jquery.js"></script>
+    <!-- <script type="text/javascript" src="2.js"></script> -->
     <script>
-      drawUsers(users);
+    drawUsers(users);
     </script>
-  </body>
+</body>
+
 </html>
