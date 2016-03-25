@@ -29,8 +29,12 @@
         });
       }
 
-      function trigger(eventName){
-
+      function trigger(triggeredEventName){
+        listeners.forEach(function(listener){
+          if( triggeredEventName == listener.eventName ){
+            listener.callback();
+          }
+        });
       }
 
 
@@ -44,15 +48,12 @@
 
       /* block 1 reaction */
       listen('new-message', function block1reaction(){
-        block1.innerHTML = 'REACTED';
+        block1.style.borderColor = 'green';
       });
-
       /* block 2 reaction */
       listen('new-message', function block2reaction(){
         block2.innerHTML = 'REACTED';
       });
-
-
     </script>
   </body>
 </html>
