@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .b {
+        border: 1px solid black;
+        height: 100px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button type="button" id="button">Simulate some event</button>
+    <div class="b" id="block1">
+      I will react on event
+    </div>
+    <div class="b" id="block2">
+      I will react on event too
+    </div>
+    <script type="text/javascript">
+      var listeners = [];
+
+      function listen(givenEventName, givenCallback){
+        listeners.push({
+          'eventName': givenEventName,
+          'callback': givenCallback
+        });
+      }
+
+      function trigger(eventName){
+
+      }
+
+
+      var button = document.getElementById('button');
+      var block1 = document.getElementById('block1');
+      var block2 = document.getElementById('block2');
+
+      button.addEventListener('click', function(e){
+        trigger('new-message');
+      });
+
+      /* block 1 reaction */
+      listen('new-message', function block1reaction(){
+        block1.innerHTML = 'REACTED';
+      });
+
+      /* block 2 reaction */
+      listen('new-message', function block2reaction(){
+        block2.innerHTML = 'REACTED';
+      });
+
+
+    </script>
+  </body>
+</html>
