@@ -12,12 +12,15 @@
     </style>
   </head>
   <body>
-    <button type="button" id="button">Simulate some event</button>
+    <button type="button" id="button1">Send message from John</button>
+    <button type="button" id="button2">Send message from Bill</button>
     <div class="b" id="block1">
-      I will react on event
+      Number of recieved messages <span id="numMessages"></span>
     </div>
     <div class="b" id="block2">
-      I will react on event too
+      Last recieved message from: <span id="senderName"></span>
+      <br>
+      Message text: <span id="messageText"></span>
     </div>
     <script type="text/javascript">
       var listeners = [];
@@ -29,30 +32,51 @@
         });
       }
 
-      function trigger(triggeredEventName){
+      function trigger(triggeredEventName, eventData){
         listeners.forEach(function(listener){
           if( triggeredEventName == listener.eventName ){
-            listener.callback();
+            listener.callback(eventData);
           }
         });
       }
 
 
-      var button = document.getElementById('button');
+      var button1 = document.getElementById('button1');
+      var button2 = document.getElementById('button2');
       var block1 = document.getElementById('block1');
       var block2 = document.getElementById('block2');
+      var numMessages = document.getElementById('numMessages');
+      var senderName = document.getElementById('senderName');
+      var messageText = document.getElementById('messageText');
 
-      button.addEventListener('click', function(e){
-        trigger('new-message');
+      button1.addEventListener('click', function(e){
+        var eventData = {
+          from: 'John',
+          message: 'Hello'
+        };
+        trigger('new-message', eventData);
+      });
+
+      button2.addEventListener('click', function(e){
+        var eventData = {
+          from: 'Bill',
+          message: 'Make me a sandwitch'
+        };
+        trigger('new-message', eventData);
       });
 
       /* block 1 reaction */
-      listen('new-message', function block1reaction(){
-        block1.style.borderColor = 'green';
+      var numOfMessages = 0;
+      listen('new-message', function block1reaction(eventData){
+        numOfMessages++;
+        numMessages.innerHTML = numOfMessages;
+        console.log(eventData);
       });
+
       /* block 2 reaction */
-      listen('new-message', function block2reaction(){
-        block2.innerHTML = 'REACTED';
+      listen('new-message', function block2reaction(message){
+        senderName.innerHTML = message.from;
+        messageText.innerHTML = message.message;
       });
     </script>
   </body>
