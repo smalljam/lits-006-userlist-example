@@ -46,7 +46,12 @@
 
     <script src="2.js"></script>
     <script>
-      drawUsers(users);
+      var usersListNode = document.getElementById('usersListNode');
+      // drawUsers(users);
+      users.forEach(function(userData){
+        var user = new User(userData);
+        usersListNode.innerHTML += user.render();
+      });
     </script>
   </body>
 </html>

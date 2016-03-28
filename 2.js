@@ -22,48 +22,67 @@ var users = [
   },
 ];
 
+//
 var usersList = document.getElementById('usersListNode');
 var userInfoNode = document.getElementById('userInfoNode');
 
-function drawUsers(usersList) {
-  usersList.forEach(drawOneUser);
-}
-
-var selectedUser;
-
-function drawOneUser(userObject, index) {
-
-  var item = document.createElement('li');
-  item.innerHTML = index + ':' + userObject.name;
-  item.className = 'user';
-  item.onclick = function() {
-    if (selectedUser) {
-      selectedUser.className = 'user';
-    }
-
-    setUserInfo(userObject);
-    this.className = 'userActive';
-    selectedUser = this;
-  };
-
-  usersList.appendChild(item);
-}
+//
+// function drawUsers(usersList) {
+//   usersList.forEach(drawOneUser);
+// }
+//
+// var selectedUser;
+//
+// function drawOneUser(userObject, index) {
+//
+//   var item = document.createElement('li');
+//   item.innerHTML = index + ':' + userObject.name;
+//   item.className = 'user';
+//   item.onclick = function() {
+//     if (selectedUser) {
+//       selectedUser.className = 'user';
+//     }
+//
+//     setUserInfo(userObject);
+//     this.className = 'userActive';
+//     selectedUser = this;
+//   };
+//
+//   usersList.appendChild(item);
+// }
 
 var template = userInfoNode.innerHTML;
 
-setUserInfoNodeHTML('');
+// setUserInfoNodeHTML('');
+//
+// function setUserInfo(userObject) {
+//   var newContent = template;
+//
+//   var fields = Object.keys(userObject);
+//   fields.forEach(function(fieldName) {
+//     newContent = newContent.replace('{{' + fieldName + '}}', userObject[fieldName]);
+//   });
+//
+//   setUserInfoNodeHTML(newContent);
+// }
+//
+// function setUserInfoNodeHTML(content) {
+//   userInfoNode.innerHTML = content;
+// }
 
-function setUserInfo(userObject) {
-  var newContent = template;
-
-  var fields = Object.keys(userObject);
-  fields.forEach(function(fieldName) {
-    newContent = newContent.replace('{{' + fieldName + '}}', userObject[fieldName]);
-  });
-
-  setUserInfoNodeHTML(newContent);
+function User(userData) {
+  this.data = userData;
 }
 
-function setUserInfoNodeHTML(content) {
-  userInfoNode.innerHTML = content;
-}
+User.prototype = {
+  render: function() {
+    var userData = this.data;
+    var newContent = template;
+    var fields = Object.keys(userData);
+    fields.forEach(function(fieldName) {
+      newContent = newContent.replace('{{' + fieldName + '}}', userData[fieldName]);
+    });
+
+    return newContent;
+  },
+};
