@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      function Human(){
+
+      }
+      Human.prototype = {
+        sex: null,
+        age: null,
+        eye_color: null,
+        height: null,
+        learn: function(){
+
+        },
+        eat: function(){
+
+        }
+      }
+
+
+      function Athlete(){
+
+      }
+      Athlete.prototype = {
+        speed: 10,
+        run: function(){
+          console.log('I can run with',this.speed,'speed')
+        }
+      }
+
+      function Chef(){
+
+      }
+      Chef.prototype = {
+        taste: 'great',
+        cook: function(){},
+      }
+
+
+      var joe = new Human();
+      var joeRunner = new Athlete();
+      var joeChef = new Chef();
+
+      showSkills(joe)
+      console.log('-')
+      showSkills(joeRunner)
+      console.log('-')
+      showSkills(joeChef)
+
+
+      // IMPROVING JOE
+      for(skill in joeRunner){
+        joe[skill] = joeRunner[skill];
+      }
+
+      for(skill in joeChef){
+        joe[skill] = joeChef[skill];
+      }
+
+      console.log('NEW JOE')
+      showSkills(joe)
+
+
+
+
+
+
+
+
+      function showSkills(obj){
+        for(skill in obj){
+          console.log(skill);
+        }
+      }
+
+      // joe
+      // learn, eat, cook, run
+    </script>
+  </body>
+</html>
