@@ -42,25 +42,20 @@
       }
 
 
-      var joe = new Human();
-      var joeRunner = new Athlete();
-      var joeChef = new Chef();
+      function AverageJoe(){
+        var joe = new Human();
+        var joeRunner = new Athlete();
+        var joeChef = new Chef();
 
-      showSkills(joe)
-      console.log('-')
-      showSkills(joeRunner)
-      console.log('-')
-      showSkills(joeChef)
+        mixin(this, joe);
+        mixin(this, joeRunner);
+        mixin(this, joeChef);
+      }
 
 
-      // IMPROVING JOE
-      mixin(joe, joeRunner)
-      mixin(joe, joeChef)
-
+      var joe = new AverageJoe();
       console.log('NEW JOE')
       showSkills(joe)
-
-
 
 
 
