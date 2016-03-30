@@ -17,27 +17,31 @@
         learn: function(){
 
         },
-        eat: function(){
-
+        eat: function(foodType){
+          if( this.taste == 'good' ){
+            return false;
+          } else {
+            return true;
+          }
         }
       }
 
 
       function Athlete(){
-
+        this.speed = 10;
       }
       Athlete.prototype = {
-        speed: 10,
+        speed: null,
         run: function(distance){
           return distance/this.speed;
         }
       }
 
       function Chef(){
-
+        this.taste = 'good';
       }
       Chef.prototype = {
-        taste: 'great',
+        taste: null,
         cook: function(){},
       }
 
@@ -53,18 +57,29 @@
         mixin(this, Object.create(Athlete.prototype));
         mixin(this, Object.create(Chef.prototype));
         mixin(this, someAdditionalSkills);
+        Human.call(this);
+        Athlete.call(this);
+        Chef.call(this);
       }
 
 
       function AthleteDancer(){
         mixin(this, Object.create(Athlete.prototype));
         mixin(this, someAdditionalSkills);
+        Athlete.call(this);
       }
 
       var joe = new AverageJoe();
-      joe.speed = 3;
+      console.log('1')
+      showSkills(joe);
 
       var athleteDancer = new AthleteDancer();
+      console.log('2')
+      showSkills(athleteDancer);
+
+      var athlete = new Athlete()
+      console.log('3')
+      showSkills(athlete);
 
 
       console.log(willCatch( athleteDancer, joe, 10, 20 ))
@@ -95,7 +110,7 @@
 
       function showSkills(obj){
         for(skill in obj){
-          console.log(skill);
+          console.log(skill, obj[skill]);
         }
       }
 
