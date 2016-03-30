@@ -28,8 +28,8 @@
       }
       Athlete.prototype = {
         speed: 10,
-        run: function(){
-          console.log('I can run with',this.speed,'speed')
+        run: function(distance){
+          return distance/this.speed;
         }
       }
 
@@ -62,13 +62,28 @@
       }
 
       var joe = new AverageJoe();
-      console.log('NEW JOE')
-      showSkills(joe)
+      joe.speed = 3;
 
       var athleteDancer = new AthleteDancer();
-      console.log('NEW AthleteDancer')
-      showSkills(athleteDancer)
 
+
+      console.log(willCatch( athleteDancer, joe, 10, 20 ))
+
+
+      var flash = {
+        run: function(){
+          return 0;
+        }
+      }
+
+      console.log(willCatch( athleteDancer, flash, 10, 20 ))
+
+
+      function willCatch(obj1, obj2, fora, distance){
+        var t1 = obj1.run(distance);
+        var t2 = obj2.run(distance - fora);
+        return t1 <= t2;
+      }
 
 
       function mixin(targetObj, sourceObj){
