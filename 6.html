@@ -41,21 +41,33 @@
         cook: function(){},
       }
 
-
-      function AverageJoe(){
-        var joe = new Human();
-        var joeRunner = new Athlete();
-        var joeChef = new Chef();
-
-        mixin(this, joe);
-        mixin(this, joeRunner);
-        mixin(this, joeChef);
+      var someAdditionalSkills = {
+        dance: 3,
+        jump: 5,
+        singSongs: function(){}
       }
 
+
+      function AverageJoe(){
+        mixin(this, Object.create(Human.prototype));
+        mixin(this, Object.create(Athlete.prototype));
+        mixin(this, Object.create(Chef.prototype));
+        mixin(this, someAdditionalSkills);
+      }
+
+
+      function AthleteDancer(){
+        mixin(this, Object.create(Athlete.prototype));
+        mixin(this, someAdditionalSkills);
+      }
 
       var joe = new AverageJoe();
       console.log('NEW JOE')
       showSkills(joe)
+
+      var athleteDancer = new AthleteDancer();
+      console.log('NEW AthleteDancer')
+      showSkills(athleteDancer)
 
 
 
