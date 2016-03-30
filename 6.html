@@ -54,13 +54,8 @@
 
 
       // IMPROVING JOE
-      for(skill in joeRunner){
-        joe[skill] = joeRunner[skill];
-      }
-
-      for(skill in joeChef){
-        joe[skill] = joeChef[skill];
-      }
+      mixin(joe, joeRunner)
+      mixin(joe, joeChef)
 
       console.log('NEW JOE')
       showSkills(joe)
@@ -69,7 +64,11 @@
 
 
 
-
+      function mixin(targetObj, sourceObj){
+        for(skill in sourceObj){
+          targetObj[skill] = sourceObj[skill];
+        }
+      }
 
 
       function showSkills(obj){
