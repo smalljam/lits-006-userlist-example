@@ -18,29 +18,18 @@
         'situation2': [reaction3, reaction4, reaction5],
       };
 
-      if(  situation1isHere()  ) {
-        callAll('situation1');
-      }
+      callAll(situation1isHere(), 'situation1');
+      callAll(situation2isHere(), 'situation2');
 
-      if(  situation2isHere()  ) {
-        callAll('situation2');
+      // 1. condition
+      // 2. situationName
+      function callAll(condition, situationName){
+        if( condition == true ){
+          reactionsMap[situationName].forEach(function(callback){
+            callback();
+          });
+        }
       }
-
-      function callAll(situationName){
-        reactionsMap[situationName].forEach(function(callback){
-          callback();
-        });
-      }
-
-      // // 1. condition
-      // // 2. situationName
-      // function callAll(condition, situationName){
-      //   if( condition == true ){
-      //     reactionsMap[situationName].forEach(function(callback){
-      //       callback();
-      //     });
-      //   }
-      // }
 
 
     </script>
