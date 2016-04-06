@@ -13,23 +13,24 @@
       function reaction6(){}
 
 
-
-
-      var reactionsToSituation1 = [reaction0, reaction1, reaction2];
+      var reactionsMap = {
+        'situation1': [reaction0, reaction1, reaction2],
+        'situation2': [reaction3, reaction4, reaction5],
+      };
 
       if(  situation1isHere()  ) {
-        reactionsToSituation1.forEach(function(callback){
+        reactionsMap['situation1'].forEach(function(callback){
           callback();
         });
       }
-
-      var reactionsToSituation2 = [reaction3, reaction4, reaction5];
 
       if(  situation2isHere()  ) {
-        reactionsToSituation2.forEach(function(callback){
+        reactionsMap['situation2'].forEach(function(callback){
           callback();
         });
       }
+
+
 
 
     </script>
