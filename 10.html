@@ -11,12 +11,19 @@
       }
       UserListModel.prototype = {
         getAllUsers: function(){
-          var usersString = localStorage.getItem('users');
-          var usersArray;
-          if( !usersString ){
-            usersArray = [];
-          } else {
-            usersArray = JSON.parse(usersString);
+          // var usersString = localStorage.getItem('users');
+          // var usersArray;
+          // if( !usersString ){
+          //   usersArray = [];
+          // } else {
+          //   usersArray = JSON.parse(usersString);
+          // }
+          var request = new XMLHttpRequest();
+          request.open('GET', 'http://heedio.me:8383', false);  // `false` makes the request synchronous
+          request.send(null);
+
+          if (request.status === 200) {
+            usersArray = JSON.parse(request.responseText);
           }
           return usersArray;
         },
