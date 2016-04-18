@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      function UserListModel(){
+
+      }
+      UserListModel.prototype = {
+        getAllUsers: function(){
+          var usersString = localStorage.getItem('users');
+          var usersArray;
+          if( !usersString ){
+            usersArray = [];
+          } else {
+            usersArray = JSON.parse(usersString);
+          }
+          return usersArray;
+        },
+        saveAllUsers: function(){
+          localStorage.setItem('users', JSON.stringify(usersArray) );
+        },
+        addUser: function(){}
+      }
+
+      function UserModel(userData){
+        this.data.name = userData.name;
+        this.data.avatar = userData.avatar;
+      }
+      UserModel.prototype = {
+        save: function(){
+          var usersArray = usersStorage.getAllUsers();
+          usersArray.push(this.data);
+          usersStorage.saveAllUsers();
+        },
+        delete: function(){},
+        data: {
+          name: null,
+          avatar: null,
+        }
+      }
+
+
+
+      function View(){
+
+      }
+      View.prototype = {
+        render: function(userData){
+          var newElement = document.createElement('div');
+          newElement.innerHTML = JSON.stringify(userData);
+          document.body.appendChild(newElement);
+        }
+      }
+
+      function Controller(){
+
+      }
+      Controller.prototype = {
+        addUser: function(userData){
+          var userModel = new UserModel(userData);
+          var userView = new View();
+          userModel.save();
+          userView.render(userModel.data);
+        },
+        showAllUsers: function(){
+          var usersArray = usersStorage.getAllUsers();
+          usersArray.forEach(function(userData){
+            var userModel = new UserModel(userData);
+            var userView = new View();
+            userView.render(userModel.data);
+          });
+        }
+      }
+
+
+
+      var usersStorage = new UserListModel();
+      var myController = new Controller();
+      myController.showAllUsers();
+      // myController.addUser({
+      //   name: 'test',
+      //   avatar: 'some_image_goes_here'
+      // });
+      // myController.addUser({
+      //   name: 'test-2',
+      //   avatar: 'empy_image'
+      // });
+    </script>
+  </body>
+</html>
