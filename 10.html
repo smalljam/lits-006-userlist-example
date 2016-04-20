@@ -63,6 +63,29 @@
         }
       }
 
+      function ViewDisabled(){
+
+      }
+      ViewDisabled.prototype = {
+        render: function(userData){
+          var newElement = document.createElement('div');
+          newElement.style.color = 'red';
+          newElement.innerHTML = JSON.stringify({name:userData.name});
+          document.body.appendChild(newElement);
+        }
+      }
+
+      function AnotherView(){
+
+      }
+      AnotherView.prototype = {
+        render: function(userData){
+          console.log('-------------------');
+          console.log(userData.name, '\t', userData.avatar);
+          console.log('-------------------');
+        }
+      }
+
       function Controller(){
 
       }
@@ -77,7 +100,13 @@
           var usersArray = usersStorage.getAllUsers();
           usersArray.forEach(function(userData){
             var userModel = new UserModel(userData);
-            var userView = new View();
+            var userView;
+            if( userModel.data.avatar ){
+              userView = new View();
+            } else {
+              userView = new AnotherView();
+            }
+
             userView.render(userModel.data);
           });
         }
