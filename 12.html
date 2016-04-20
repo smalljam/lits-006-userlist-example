@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input id="userName"/>
+    <input id="userLast"/>
+    <script>
+      var userName = document.getElementById('userName');
+      var userLast = document.getElementById('userLast');
+      var user = {
+        name: 'John',
+        last: 'Smith'
+      }
+      userName.value = user.name;
+      userLast.value = user.last;
+
+      userName.addEventListener('keyup', function(){
+        user.name = this.value;
+      });
+      userLast.addEventListener('keyup', function(){
+        user.last = this.value;
+      });
+
+      function getUserData(){
+        return user;
+      }
+
+      function setUserData(first, last){
+        user.name = first;
+        user.last = last;
+        userName.value = user.name;
+        userLast.value = user.last;
+      }
+
+    </script>
+  </body>
+</html>
