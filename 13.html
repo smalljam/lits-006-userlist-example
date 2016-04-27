@@ -29,21 +29,126 @@
       // assertTrue( square(2) == 4 );
       // assertTrue( false );
       // assertEquals( square(3), 9 );
-      assertEquals( sqrt(4), 2 );
-      assertEquals( sqrt(-5), 0 );
-      assertEquals( sqrt(-1), 'i' );
-      assertEquals( sum(1,1), 2 );
-      assertEquals( sum(2,1), 3 );
+      // assertEquals( sqrt(4), 2 );
+      // assertEquals( sqrt(-5), 0 );
+      // assertEquals( sqrt(-1), 'i' );
+      // assertEquals( sum(1,1), 2 );
+      // assertEquals( sum(2,1), 3 );
 
       // quick check generator
-      for(var i = 0; i < 10; i++){
-        for(var j = 0; j < 10; j++){
-          assertEquals( sum(i,j), i+j )
+      // for(var i = 0; i < 10; i++){
+      //   for(var j = 0; j < 10; j++){
+      //     assertEquals( sum(i,j), i+j )
+      //   }
+      // }
+
+//// CODE TO TEST /////
+      function UserModel(data){
+        this.name = data.name;
+        this.last = data.last;
+        this.age = data.age;
+        this.country = data.country;
+      }
+      UserModel.prototype = {
+        isAllowedToDrink: function(){
+          if( this.country == 'UA' ){
+            return this.age > 17;
+          }
+          return this.age > 20;
+        },
+        greetings: function(){
+          if( this.country == 'UA' ){
+            return this.last + ' ' + this.name;
+          }
+          return this.name + ' ' + this.last;
+        },
+        save: function(){
+          otherLibrary.saveData({
+            name : this.name,
+            // last : this.last,
+            age : this.age,
+            country : this.country,
+          });
         }
       }
+//// //// /////
+
+/// INPUT PARAMS ////////
+      var myUser = new UserModel({
+        name: 'John',
+        age: 45
+      });
+
+      var myUser2 = new UserModel({
+        name: 'Pavlo',
+        last: 'Grusha',
+        age: 19,
+        country: 'UA'
+      });
+
+      var myUser3 = new UserModel({
+        name: 'Fred',
+        last: 'Smith',
+        age: 19,
+        country: 'US'
+      });
+/////     ///////    //////
+
+// TEST CASES //
+      assertEquals( myUser.name, 'John' )
+      assertEquals( myUser.age, 45 )
+      assertTrue( myUser.isAllowedToDrink() )
+      assertTrue( myUser2.isAllowedToDrink() )
+      assertFalse( myUser3.isAllowedToDrink() )
+
+      assertEquals( myUser2.greetings(), 'Grusha Pavlo' )
+      assertEquals( myUser3.greetings(), 'Fred Smith' )
+
+
+      ///////
+      var saveDataWasCalled = false;
+      var saveDataData = null;
+      var otherLibrary = {
+        saveData: function(data){
+          saveDataWasCalled = true;
+          saveDataData = data;
+        }
+      };
+      myUser3.save();
+      assertTrue( saveDataWasCalled );
+
+      // console.log(saveDataData);
+
+      assertEquals( JSON.stringify(saveDataData), JSON.stringify({
+        name: 'Fred',
+        last: 'Smith',
+        age: 19,
+        country: 'US'
+      }) );
+
+      // expectation
+      // otherLibrary.saveData was called with params:
+      // {
+      //   name: 'Fred',
+      //   last: 'Smith',
+      //   age: 19,
+      //   country: 'US'
+      // }
+
+
+
+
+
+
+// // //
+
 
       function assertEquals(a, b){
         return assertTrue( a == b );
+      }
+
+      function assertFalse(param){
+        return assertTrue( !param );
       }
 
       function assertTrue(param){
